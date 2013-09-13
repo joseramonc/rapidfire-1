@@ -3,11 +3,8 @@ module Rapidfire
     AVAILABLE_QUESTIONS =
       [
        Rapidfire::Questions::Checkbox,
-       Rapidfire::Questions::Date,
        Rapidfire::Questions::Long,
-       Rapidfire::Questions::Numeric,
        Rapidfire::Questions::Radio,
-       Rapidfire::Questions::Select,
        Rapidfire::Questions::Short,
       ]
 

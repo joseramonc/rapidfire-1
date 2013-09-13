@@ -7,4 +7,6 @@ module Rapidfire
       attr_accessible :name, :user_id
     end
   end
+
+  scope :of_user, lambda{|user_id| { where(:user_id => user_id) }
 end

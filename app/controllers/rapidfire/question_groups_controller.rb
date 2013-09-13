@@ -5,7 +5,7 @@ module Rapidfire
     respond_to :json, only: :results
 
     def index
-      @question_groups = QuestionGroup.where(:user_id => params[:id])
+      @question_groups = QuestionGroup.all
       respond_with(@question_groups)
     end
 

@@ -13,12 +13,14 @@ module Rapidfire
 
     def new
       @question = QuestionForm.new(:question_group => @question_group)
+      authorize! :manage, @question
       respond_with(@question)
     end
 
     def create
       form_params = params[:question].merge(:question_group => @question_group)
       @question = QuestionForm.new(form_params)
+      authorize! :manage, @question
       @question.save
 
       respond_with(@question, location: index_location)
@@ -26,12 +28,14 @@ module Rapidfire
 
     def edit
       @question = QuestionForm.new(:question => @question)
+      authorize! :manage, @question
       respond_with(@question)
     end
 
     def update
       form_params = params[:question].merge(:question => @question)
       @question = QuestionForm.new(form_params)
+      authorize! :manage, @question
       @question.save
 
       respond_with(@question, location: index_location)
@@ -39,6 +43,7 @@ module Rapidfire
 
     def destroy
       @question.destroy
+      authorize! :manage, @question
       respond_with(@question, location: index_location)
     end
 

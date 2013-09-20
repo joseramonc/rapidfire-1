@@ -11,13 +11,11 @@ module Rapidfire
 
     def new
       @question_group = QuestionGroup.new
-      authorize! :manage, @question_group
       respond_with(@question_group)
     end
 
     def create
       @question_group = QuestionGroup.new(question_group_params)
-      authorize! :manage, @question_group
       @question_group.save
 
       respond_with(@question_group, location: rapidfire.question_groups_url)
@@ -25,7 +23,6 @@ module Rapidfire
 
     def destroy
       @question_group = QuestionGroup.find(params[:id])
-      authorize! :manage, @question_group
       @question_group.destroy
 
       respond_with(@question_group)
@@ -33,7 +30,6 @@ module Rapidfire
 
     def results
       @question_group = QuestionGroup.find(params[:id])
-      authorize! :manage, @question_group
       @question_group_results =
         QuestionGroupResults.new(question_group: @question_group).extract
 

@@ -18,7 +18,7 @@ module Rapidfire
       @question_group = QuestionGroup.new(question_group_params)
       @question_group.save
 
-      respond_with(@question_group, location: rapidfire.question_group_questions_path(@question_group))
+      redirect_to rapidfire.question_group_questions_path(@question_group)
     end
 
     def destroy

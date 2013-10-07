@@ -10,7 +10,7 @@ module Rapidfire
       @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)
 
       if @answer_group_builder.save
-        redirect_to "/users"
+        redirect_to "/users/#{current_user.user_name}"
       else
         render :new
       end

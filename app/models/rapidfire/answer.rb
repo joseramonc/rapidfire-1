@@ -4,8 +4,10 @@ module Rapidfire
     belongs_to :answer_group, inverse_of: :answers
 
     validates :question, :answer_group, presence: true
-    validate  :verify_answer_text
+    validate  :verify_answer_text, :if => "question.present?"
+    validates_presence_of :answer_text, :on => :create, :message => "can't be blank" 
 
+    
     if Rails::VERSION::MAJOR == 3
       attr_accessible :question_id, :answer_group, :answer_text
     end

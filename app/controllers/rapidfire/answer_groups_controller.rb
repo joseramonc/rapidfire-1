@@ -1,6 +1,7 @@
 module Rapidfire
   class AnswerGroupsController < Rapidfire::ApplicationController
     before_filter :find_question_group!
+    before_filter :is_signed_in?, except:[:new]
 
     def new
       @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)

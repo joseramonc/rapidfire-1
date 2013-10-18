@@ -11,6 +11,7 @@ module Rapidfire
       @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)
 
       if @answer_group_builder.save
+        UserMailer.new_salaam(current_user, current_user).deliver
         redirect_to main_app.user_path(current_user.user_name)
       else
         render :new

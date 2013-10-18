@@ -12,7 +12,10 @@ module Rapidfire
 
       if @answer_group_builder.save
         UserMailer.new_survey_answers(@question_group, current_user).deliver
-        Action.new(user_id:current_user.id, to_user_id:@question_group.user_id, action:"Answered Survey").save
+        action = Action.where(action:"Answered Survey", user_id:current_user.id, to_user_id:@question_group.user_id)
+        if action == []
+          Action.new(user_id:current_user.id, to_user_id:@question_group.user_id, action:"Answered Survey").save
+        end
         redirect_to main_app.user_path(current_user.user_name)
       else
         render :new

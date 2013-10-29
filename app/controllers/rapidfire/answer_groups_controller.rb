@@ -16,7 +16,8 @@ module Rapidfire
         if action == []
           Action.new(user_id:current_user.id, to_user_id:@question_group.user_id, action:"Answered Survey").save
         end
-        redirect_to main_app.user_path(current_user.user_name)
+        user = User.find(@question_group.user_id)
+        redirect_to main_app.user_path(user.user_name)
       else
         render :new
       end
